@@ -18,8 +18,7 @@ public class IsoResponseBuilder {
 
     private final MessageFactory<IsoMessage> messageFactory;
 
-    public IsoMessage buildResponse(AuthorizationRequest request,
-                                    AuthorizationDecision decision) {
+    public IsoMessage buildResponse(AuthorizationRequest request, AuthorizationDecision decision) {
         try {
             IsoMessage response = messageFactory.newMessage(0x110);
 
@@ -45,10 +44,7 @@ public class IsoResponseBuilder {
         }
     }
 
-    /**
-     * Builds a minimal error response when we don't have
-     * a full request object (e.g. parse failure).
-     */
+
     public IsoMessage buildErrorResponse(String stan, String rrn, String responseCode) {
         try {
             IsoMessage response = messageFactory.newMessage(0x110);

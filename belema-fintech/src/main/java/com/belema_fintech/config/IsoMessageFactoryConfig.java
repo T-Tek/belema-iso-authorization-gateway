@@ -19,7 +19,7 @@ public class IsoMessageFactoryConfig {
         factory.setCharacterEncoding("UTF-8");
         factory.setConfigPath("iso8583.xml");
 
-
+        //we need to be sure the bean is created at startup
         log.info("Message factory bean created");
         return factory;
     }

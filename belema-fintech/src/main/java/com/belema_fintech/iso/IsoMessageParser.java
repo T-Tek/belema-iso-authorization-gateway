@@ -17,10 +17,9 @@ public class IsoMessageParser {
 
     private final MessageFactory<IsoMessage> messageFactory;
 
-    /**
-     * Parses raw bytes into a j8583 IsoMessage.
-     * The 2-byte length prefix has already been stripped by the decoder.
-     */
+//   Parses raw bytes into a j8583 IsoMessage.
+//   The 2-byte length prefix has already been stripped by the decoder.
+
     public IsoMessage parse(byte[] rawBytes) {
         try {
             return messageFactory.parseMessage(rawBytes, 0);
@@ -31,6 +30,7 @@ public class IsoMessageParser {
     }
 
     public AuthorizationRequest toRequest(IsoMessage msg) {
+        log.info("Mapping IsoMessage to Authorization object");
         return AuthorizationRequest.builder()
                 .pan(field(msg, 2))
                 .processingCode(field(msg, 3))

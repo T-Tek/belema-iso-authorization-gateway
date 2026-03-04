@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class IsoMessageValidator {
 
     public void validate(AuthorizationRequest req) {
-        log.debug("Validating STAN: {}", req.getStan());
+        log.info("Validating Authorization request");
 
         validateMandatoryField(req.getPan(), "PAN");
         validateMandatoryField(req.getProcessingCode(), "Processing Code_Field3");
@@ -25,22 +25,22 @@ public class IsoMessageValidator {
         }
 
         validateMandatoryField(req.getTransmissionDateTime(), "Transmission DateTime Field 7");
-        validateMandatoryField(req.getStan(),                 "STAN");
+        validateMandatoryField(req.getStan(), "STAN");
         validateMandatoryField(req.getLocalTransactionTime(), "Local Transaction Time");
         validateMandatoryField(req.getLocalTransactionDate(), "Local Transaction Date");
-        validateMandatoryField(req.getExpirationDate(),       "Expiration Date");
-        validateMandatoryField(req.getMerchantType(),         "Merchant Type");
-        validateMandatoryField(req.getPosEntryMode(),          "POS Entry Mode");
-        validateMandatoryField(req.getPosConditionCode(),      "POS Condition Code");
-        validateMandatoryField(req.getTransactionFee(),        "Transaction Fee");
-        validateMandatoryField(req.getAcquiringInstitution(),  "Acquiring Institution");
-        validateMandatoryField(req.getRrn(),                   "RRN");
-        validateMandatoryField(req.getTerminalId(),            "Terminal ID");
-        validateMandatoryField(req.getMerchantId(),            "Merchant ID");
-        validateMandatoryField(req.getCardAcceptorName(),      "Card Acceptor Name");
-        validateMandatoryField(req.getCurrencyCode(),          "Currency Code");
+        validateMandatoryField(req.getExpirationDate(),"Expiration Date");
+        validateMandatoryField(req.getMerchantType(), "Merchant Type");
+        validateMandatoryField(req.getPosEntryMode(), "POS Entry Mode");
+        validateMandatoryField(req.getPosConditionCode(),"POS Condition Code");
+        validateMandatoryField(req.getTransactionFee(), "Transaction Fee");
+        validateMandatoryField(req.getAcquiringInstitution(),"Acquiring Institution");
+        validateMandatoryField(req.getRrn(),"RRN");
+        validateMandatoryField(req.getTerminalId(), "Terminal ID");
+        validateMandatoryField(req.getMerchantId(),"Merchant ID");
+        validateMandatoryField(req.getCardAcceptorName(),"Card Acceptor Name");
+        validateMandatoryField(req.getCurrencyCode(), "Currency Code");
 
-        log.debug("Validation STAN: {} successfully", req.getStan());
+        log.info("Validation successful");
     }
 
     private void validateMandatoryField(String value, String fieldName) {

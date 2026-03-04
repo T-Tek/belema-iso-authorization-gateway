@@ -10,7 +10,7 @@ public final class AmountUtil {
     private AmountUtil() {}
 
 
-     // "000000005000" → 50.00
+     // "000000005000" ---------> 50.00
     public static BigDecimal convertFromIsoAmountToBigDecimal(String rawAmount) {
         return new BigDecimal(rawAmount.trim()).divide(CENTS);
     }

@@ -35,7 +35,7 @@ public class IsoMessageHandler extends SimpleChannelInboundHandler<byte[]> {
             // 1. Parse raw bytes → IsoMessage
             IsoMessage isoMessage = parser.parse(rawBytes);
 
-            // 2. Map to domain object
+            // 2. Map to authorization object
             AuthorizationRequest request = parser.toRequest(isoMessage);
             stan = request.getStan();
             rrn  = request.getRrn();
@@ -52,11 +52,10 @@ public class IsoMessageHandler extends SimpleChannelInboundHandler<byte[]> {
             IsoMessage response = responseBuilder.buildResponse(request, decision);
             ctx.writeAndFlush(response);
 
-            log.info("Sent 0110 | STAN: {} | Response Code: {}",
-                    stan, decision.getResponseCode());
+            log.info("Sent 0110 STAN: {} with Response Code: {}", stan, decision.getResponseCode());
 
         } catch (ValidationException e) {
-            log.warn("Validation failed | STAN: {} | Reason: {}", stan, e.getMessage());
+            log.warn("Validation failed for STAN: {} Reason: {}", stan, e.getMessage());
             ctx.writeAndFlush(responseBuilder.buildErrorResponse(stan, rrn, "05"));
 
         } catch (Exception e) {

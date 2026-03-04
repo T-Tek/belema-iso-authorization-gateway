@@ -15,10 +15,10 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         log.info("Processing authorization");
 
         if (AmountUtil.isAmountApprovable(request.getAmount())) {
-            log.info("APPROVED");
+            log.info("Approved amount: {} for PAN: {}", request.getAmount(), maskPan(request.getPan()));
             return AuthorizationDecision.approve();
         } else {
-            log.info("DECLINED");
+            log.info("Declined amount: {} for PAN: {}", request.getAmount(), maskPan(request.getPan()));
             return AuthorizationDecision.decline();
         }
     }
