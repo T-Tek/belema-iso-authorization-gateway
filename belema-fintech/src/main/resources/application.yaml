@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: belema-iso-authorization-gateway
+  main:
+    web-application-type: none
+
+netty:
+  server:
+    port: 8583
+    boss-threads: 1
+    worker-threads: 4
+
+logging:
+  level:
+    com.belema_fintech: DEBUG
