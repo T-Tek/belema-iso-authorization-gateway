@@ -8,7 +8,10 @@ import com.solab.iso8583.IsoValue;
 import com.solab.iso8583.MessageFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
+
+import static com.belema_fintech.util.CardUtil.maskPan;
 
 @Slf4j
 @Component
