@@ -3,6 +3,7 @@ package com.belema_fintech.iso;
 import com.belema_fintech.domain.AuthorizationRequest;
 import com.belema_fintech.exception.IsoParsingException;
 import com.belema_fintech.util.AmountUtil;
+import com.belema_fintech.util.CardUtil;
 import com.solab.iso8583.IsoMessage;
 import com.solab.iso8583.IsoValue;
 import com.solab.iso8583.MessageFactory;
@@ -24,9 +25,34 @@ public class IsoMessageParser {
 //   The 2-byte length prefix has already been stripped by the decoder.
 
     public IsoMessage parse(byte[] rawBytes) {
-        log.info("Received raw bytes: {} ", rawBytes);
+     //   log.info("Received raw bytes: {} ", rawBytes);
+
         try {
-            return messageFactory.parseMessage(rawBytes, 0);
+            IsoMessage iso = messageFactory.parseMessage(rawBytes, 0);
+
+            //making message readable on the log
+            log.info("======== ISO MESSAGE ========");
+
+            log.info("MTI: {}", iso.getType());
+
+            for (int i = 2; i <= 128; i++) {
+
+                if (!iso.hasField(i)) {
+                    continue;
+                }
+
+                String value = iso.getField(i).toString();
+
+                if (i == 2) {
+                    value = CardUtil.maskPan(value);
+                }
+
+                log.info("F{} : {}", i, value);
+            }
+
+            log.info("=============================");
+            return iso;
+
         } catch (Exception e) {
             log.error("Failed to parse raw ISO 8583 bytes", e);
             throw new IsoParsingException("Failed to parse ISO 8583 message");

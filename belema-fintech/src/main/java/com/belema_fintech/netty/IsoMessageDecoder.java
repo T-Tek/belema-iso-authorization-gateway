@@ -28,7 +28,7 @@ public class IsoMessageDecoder extends ByteToMessageDecoder {
         byte[] messageBytes = new byte[messageLength];
         in.readBytes(messageBytes);
 
-        log.debug("Decoded message | length: {}", messageLength);
+        log.info("Decoded message length: {}", messageLength);
         out.add(messageBytes);
     }
 }
