@@ -24,6 +24,7 @@ public class IsoMessageParser {
 //   The 2-byte length prefix has already been stripped by the decoder.
 
     public IsoMessage parse(byte[] rawBytes) {
+        log.info("Received raw bytes: {} ", rawBytes);
         try {
             return messageFactory.parseMessage(rawBytes, 0);
         } catch (Exception e) {

@@ -82,7 +82,7 @@ class IsoMessageHandlerTest {
         String response = readResponse();
 
         assertTrue(response.startsWith("0110"));
-        assertTrue(response.contains("05"), "$100.01 should be declined");
+        assertTrue(response.contains("05"), "N100.01 should be declined");
     }
     private void writeToChannel(byte[] message) {
         ByteBuf buf = Unpooled.buffer();
